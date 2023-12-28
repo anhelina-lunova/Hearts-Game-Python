@@ -10,6 +10,8 @@
 **Solution** [*link*](day_1/hw_1.py)
 \
 **Tutor's solution** [*link*](day_1/tutor_solution_1.py)
+\
+**Video Day 1** [*link*](https://youtu.be/YgP06wqK-OE)
 
 ---
 
@@ -20,6 +22,8 @@
 **Solution** [*link*](day_2/hw_2.py)
 \
 **Tutor's solution** [*link*](day_2/tutor_solution_2.py)
+\
+**Video Day 2** [*link*](https://youtu.be/P2y_ZfbQX2M)
 
 ---
 
@@ -30,6 +34,8 @@
 **Solution** [*link*](day_3/hw_3.py)
 \
 **Tutor's solution** [*link*](day_3/tutor_solution_3.py)
+\
+**Video Day 3** [*link*](https://youtu.be/TNrbXZpvDOk)
 
 ---
 
@@ -40,6 +46,8 @@
 **Solution** [*link*](day_4/hw_4.py)
 \
 **Tutor's solution** [*link*](day_4/tutor_solution_4.py)
+\
+**Video Day 4** [*link*](https://www.youtube.com/watch?v=O0XJDFWBRQs)
 
 ---
 
@@ -50,6 +58,8 @@
 **Solution** [*link*](day_5/hw_5.py)
 \
 **Tutor's solution** [*link*](day_5/tutor_solution_5.py)
+\
+**Video Day 5** [*link*](https://www.youtube.com/watch?v=7VpBg-K8ofc)
 
 ---
 
@@ -60,5 +70,7 @@
 **Solution** [*link*](day_6/hw_6.py)
 \
 **Tutor's solution** [*link*](day_6/tutor_solution_6.py)
+\
+**Video Day 6** [*link*]()
 
 ---
