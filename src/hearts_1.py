@@ -61,10 +61,6 @@ def play() -> None:
             print(f"{name}: {card[0] + card[1]:<3} ", end="")  # і після цього друкуємо
         print()
 
-    # for name, cards in hands.items():
-    #     card_str = " ".join(f"{s}{r}" for (s, r) in cards)
-    #     print(f"{name}: {card_str}")
-
 
 if __name__ == "__main__":
     play()
