@@ -25,8 +25,8 @@ def player_order(names, start=None):
     """Rotate plyer order so that start goes first."""
     if start is None:
         start = choose(names)
-    start_ind = names.index(start)
-    return names[start_ind:] + names[:start_ind]
+    start_index = names.index(start)
+    return names[start_index:] + names[:start_index]
 
 
 def deal_hands(deck: Deck) -> Tuple[Deck, Deck, Deck, Deck]:
