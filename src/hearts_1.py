@@ -1,5 +1,5 @@
 import random
-from typing import List, Tuple
+from typing import List, Tuple, Sequence, Any
 
 SUITS = "♠ ♥ ♦ ♣".split()
 RANKS = "2 3 4 5 6 7 8 9 10 J Q K A".split()
@@ -16,7 +16,7 @@ def get_deck(shuffle: bool = False) -> Deck:
     return deck
 
 
-def choose(items):
+def choose(items: Sequence[Any]) -> Any:
     """Choose and return random item."""
     return random.choice(items)
 
