@@ -1,5 +1,5 @@
 import random
-from typing import List, Tuple, Sequence, Any, TypeVar
+from typing import List, Tuple, Sequence, Any, TypeVar, Optional
 
 SUITS = "♠ ♥ ♦ ♣".split()
 RANKS = "2 3 4 5 6 7 8 9 10 J Q K A".split()
@@ -23,7 +23,7 @@ def choose(items: Sequence[Choosable]) -> Choosable:
     return random.choice(items)
 
 
-def player_order(names, start=None):
+def player_order(names: List[str], start: Optional[str] = None) -> List[str]:
     """Rotate plyer order so that start goes first."""
     if start is None:
         start = choose(names)
