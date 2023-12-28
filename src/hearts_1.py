@@ -40,7 +40,7 @@ def play() -> None:
     """Play a 4-player card game"""
     deck = get_deck(shuffle=True)
     names = "P1 P2 P3 P4".split()
-    hands = {n: h for n, h in zip(names, deal_hands(deck))}
+    hands: dict[str, Deck] = {n: h for n, h in zip(names, deal_hands(deck))}
 
     for name, cards in hands.items():
         card_str = " ".join(f"{s}{r}" for (s, r) in cards)
