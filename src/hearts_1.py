@@ -16,12 +16,12 @@ def get_deck(shuffle: bool = False) -> Deck:
     return deck
 
 
-def deal_hands(deck):
+def deal_hands(deck: Deck) -> Tuple[Deck, Deck, Deck, Deck]:
     """Deal the cards in the deck into four hands"""
     return deck[0::4], deck[1::4], deck[2::4], deck[3::4]
 
 
-def play():
+def play() -> None:
     """Play a 4-player card game"""
     deck = get_deck(shuffle=True)
     names = "P1 P2 P3 P4".split()
