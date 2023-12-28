@@ -21,6 +21,14 @@ def choose(items):
     return random.choice(items)
 
 
+def player_order(names, start=None):
+    """Rotate plyer order so that start goes first."""
+    if start is None:
+        start = choose(names)
+    start_ind = names.index(start)
+    return names[start_ind:] + names[:start_ind]
+
+
 def deal_hands(deck: Deck) -> Tuple[Deck, Deck, Deck, Deck]:
     """Deal the cards in the deck into four hands"""
     return deck[0::4], deck[1::4], deck[2::4], deck[3::4]
