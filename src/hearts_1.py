@@ -16,6 +16,11 @@ def get_deck(shuffle: bool = False) -> Deck:
     return deck
 
 
+def choose(items):
+    """Choose and return random item."""
+    return random.choice(items)
+
+
 def deal_hands(deck: Deck) -> Tuple[Deck, Deck, Deck, Deck]:
     """Deal the cards in the deck into four hands"""
     return deck[0::4], deck[1::4], deck[2::4], deck[3::4]
