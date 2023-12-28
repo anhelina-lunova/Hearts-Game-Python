@@ -1,10 +1,11 @@
 import random
+from typing import List, Tuple
 
 SUITS = "♠ ♥ ♦ ♣".split()
 RANKS = "2 3 4 5 6 7 8 9 10 J Q K A".split()
 
 
-def get_deck(shuffle=False):
+def get_deck(shuffle: bool = False) -> List[Tuple[str, str]]:
     """Get a new deck of 52 cards."""
     deck = [(s, r) for r in RANKS for s in SUITS]
     if shuffle:
