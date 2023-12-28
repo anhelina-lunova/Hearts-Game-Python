@@ -1,11 +1,13 @@
 import random
-from typing import List, Tuple, Sequence, Any
+from typing import List, Tuple, Sequence, Any, TypeVar
 
 SUITS = "♠ ♥ ♦ ♣".split()
 RANKS = "2 3 4 5 6 7 8 9 10 J Q K A".split()
 
 Card = Tuple[str, str]  # tuple[str, str]
 Deck = List[Card]  # list[tuple[str, str]
+
+Choosable = TypeVar("Choosable")
 
 
 def get_deck(shuffle: bool = False) -> Deck:
@@ -16,7 +18,7 @@ def get_deck(shuffle: bool = False) -> Deck:
     return deck
 
 
-def choose(items: Sequence[Any]) -> Any:
+def choose(items: Sequence[Choosable]) -> Choosable:
     """Choose and return random item."""
     return random.choice(items)
 
