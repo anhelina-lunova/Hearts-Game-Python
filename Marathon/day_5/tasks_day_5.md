@@ -7,10 +7,10 @@
 Завдання з зірочкою. Додайте можливість виводити значення карт в консоль не в простому чорно-білому зображенні, а в кольоровому. Можливо - додайте кольори фону і стиль. Поексперементуйте і запропонуйте найбільш виразний на Ваш погляд варіант. Поясніть в коментарі вибір бібліотеки
 
 Рекомендовані для використання бібліотеки і матеріали:
-- [ ] [colorama](https://pypi.org/project/colorama/)
-- [ ] [termcolor](https://pypi.org/project/termcolor/)
-- [ ] [print-colored-text-to-the-terminal-in-python](https://www.askpython.com/python/examples/print-colored-text-to-the-terminal-in-python)
-- [ ] [print-colors-python-terminal](https://www.geeksforgeeks.org/print-colors-python-terminal/)
+- [colorama](https://pypi.org/project/colorama/)
+- [termcolor](https://pypi.org/project/termcolor/)
+- [print-colored-text-to-the-terminal-in-python](https://www.askpython.com/python/examples/print-colored-text-to-the-terminal-in-python)
+- [print-colors-python-terminal](https://www.geeksforgeeks.org/print-colors-python-terminal/)
 
 ---
 
