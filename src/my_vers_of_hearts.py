@@ -112,6 +112,7 @@ class Player:
         self.hand.cards.remove(card)
         name_color = fore_color_yellow
         print(f"{name_color}{self.name}:{card!r:<3}", end="")
+        return card  # Return the played card
 
 
 class Game:
