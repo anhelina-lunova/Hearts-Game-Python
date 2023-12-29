@@ -1,5 +1,6 @@
 import random
 import sys
+from colorama import Fore, Style, Back  # Import for colored output
 
 
 class Card:
@@ -25,7 +26,13 @@ class Card:
         self.rank = rank
 
     def __repr__(self):
-        return f"{self.suit}{self.rank}  "
+        suit_color = {
+            "♠": Fore.BLACK + Style.BRIGHT,
+            "♥": Fore.RED + Style.BRIGHT,
+            "♦": Fore.RED + Style.BRIGHT,
+            "♣": Fore.BLACK + Style.BRIGHT,
+        }
+        return f"{suit_color[self.suit]}{self.suit}{self.rank}{Style.RESET_ALL}"
 
     @property
     def value(self) -> int:
@@ -42,9 +49,13 @@ class Card:
         return 0
 
     def __eq__(self, other: "Card") -> bool:
+        if not isinstance(other, Card):
+            raise TypeError("Comparison only allowed between Card objects.")
         return self.suit == other.suit and self.rank == other.rank
 
     def __lt__(self, other: "Card") -> bool:
+        if not isinstance(other, Card):
+            raise TypeError("Comparison only allowed between Card objects.")
         return self.value < other.value
 
 
@@ -74,8 +85,10 @@ class Player:
     def play_card(self) -> Card:
         """Play a card from the player's hand."""
         card = random.choice(self.hand.cards)
+        print(Back.LIGHTWHITE_EX, end="")
         self.hand.cards.remove(card)
-        print(f"{self.name}: {card!r:<3}", end="")
+        name_color = Fore.YELLOW
+        print(f"{name_color}{self.name}: {card!r:<3}", end="")
 
 
 class Game:
