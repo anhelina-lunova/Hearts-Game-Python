@@ -5,12 +5,22 @@ import os
 import time
 import game_description
 
+fore_color_yellow_bright = Fore.YELLOW + Style.BRIGHT
+fore_color_yellow = Fore.YELLOW
+fore_color_black_bright = Fore.BLACK + Style.BRIGHT
+fore_color_red_bright = Fore.RED + Style.BRIGHT
+back_color_white = Back.WHITE
 
-def typewriter(message, time_):
+
+def typewriter(message, time_, colorama_opt):
     for char in message:
-        sys.stdout.write(char)
+        # Apply desired color before writing the character
+        sys.stdout.write(colorama_opt + char)  # Example: Red color
         sys.stdout.flush()
         time.sleep(time_)
+
+    # Reset color after the message
+    sys.stdout.write(Style.RESET_ALL)  # Reset back to default style
     time.sleep(1)
     os.system("clear")
 
@@ -39,10 +49,10 @@ class Card:
 
     def __repr__(self):
         suit_color = {
-            "♠": Fore.BLACK + Style.BRIGHT,
-            "♥": Fore.RED + Style.BRIGHT,
-            "♦": Fore.RED + Style.BRIGHT,
-            "♣": Fore.BLACK + Style.BRIGHT,
+            "♠": fore_color_black_bright,
+            "♥": fore_color_red_bright,
+            "♦": fore_color_red_bright,
+            "♣": fore_color_black_bright,
         }
         return f"{suit_color[self.suit]}{self.suit}{self.rank}{Style.RESET_ALL}"
 
@@ -97,10 +107,10 @@ class Player:
     def play_card(self) -> Card:
         """Play a card from the player's hand."""
         card = random.choice(self.hand.cards)
-        print(Back.LIGHTWHITE_EX, end="")
+        print(back_color_white, end="")
         self.hand.cards.remove(card)
-        name_color = Fore.YELLOW
-        print(f"{name_color}{self.name}: {card!r:<3}", end="")
+        name_color = fore_color_yellow
+        print(f"{name_color}{self.name}:{card!r:<3}", end="")
 
 
 class Game:
@@ -122,8 +132,8 @@ class Game:
     def play(self) -> None:
         """Play a card game."""
 
-        typewriter(game_description.game_caption, 0.01)
-        typewriter(game_description.game_desc, 0.01)
+        typewriter(game_description.game_caption, 0.01, fore_color_red_bright)
+        typewriter(game_description.game_desc, 0.01, fore_color_yellow_bright)
 
         start_player = random.choice(self.names)
         turn_order = self.player_order(start=start_player)
