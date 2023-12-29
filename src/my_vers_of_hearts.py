@@ -1,10 +1,11 @@
 import random
 import sys
-from colorama import Fore, Style, Back  # Import for colored output
+from colorama import Fore, Style, Back  # import for colored output
 import os
 import time
-import game_description
+from game_description import game_caption, game_desc  # import game descriptions
 
+# color definitions
 fore_color_yellow_bright = Fore.YELLOW + Style.BRIGHT
 fore_color_yellow = Fore.YELLOW
 fore_color_black_bright = Fore.BLACK + Style.BRIGHT
@@ -132,8 +133,8 @@ class Game:
     def play(self) -> None:
         """Play a card game."""
 
-        typewriter(game_description.game_caption, 0.01, fore_color_red_bright)
-        typewriter(game_description.game_desc, 0.01, fore_color_yellow_bright)
+        typewriter(game_caption, 0.01, fore_color_red_bright)
+        typewriter(game_desc, 0.01, fore_color_yellow_bright)
 
         start_player = random.choice(self.names)
         turn_order = self.player_order(start=start_player)
