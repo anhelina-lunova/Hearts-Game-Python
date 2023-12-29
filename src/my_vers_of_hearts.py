@@ -1,8 +1,8 @@
-import random
-import sys
-from colorama import Fore, Style, Back  # import for colored output
 import os
+import sys
 import time
+import random
+from colorama import Fore, Style, Back  # import for colored output
 from game_description import game_caption, game_desc  # import game descriptions
 
 # color definitions
@@ -15,12 +15,12 @@ back_color_white = Back.WHITE
 
 def typewriter(message, time_, colorama_opt):
     for char in message:
-        # Apply desired color before writing the character
-        sys.stdout.write(colorama_opt + char)  # Example: Red color
+        sys.stdout.write(
+            colorama_opt + char
+        )  # Apply desired color before writing the character
         sys.stdout.flush()
         time.sleep(time_)
 
-    # Reset color after the message
     sys.stdout.write(Style.RESET_ALL)  # Reset back to default style
     time.sleep(1)
     os.system("clear")
@@ -29,19 +29,19 @@ def typewriter(message, time_, colorama_opt):
 class Card:
     SUITS = "♠ ♥ ♦ ♣".split()
     RANKS = [
-        "2 ",
-        "3 ",
-        "4 ",
-        "5 ",
-        "6 ",
-        "7 ",
-        "8 ",
-        "9 ",
-        "10",
-        "J ",
-        "Q ",
-        "K ",
-        "A ",
+        "2   ",
+        "3   ",
+        "4   ",
+        "5   ",
+        "6   ",
+        "7   ",
+        "8   ",
+        "9   ",
+        "10  ",
+        "J   ",
+        "Q   ",
+        "K   ",
+        "A   ",
     ]
 
     def __init__(self, suit: str, rank: str) -> None:
