@@ -6,7 +6,7 @@ from typing import overload
 
 
 class Card:
-    SUITS = "♠ ♥ ♦ ♣".split()
+    SUITS = "♣ ♦ ♠ ♥".split()
     RANKS = "2 3 4 5 6 7 8 9 10 J Q K A".split()
 
     def __init__(
@@ -19,12 +19,12 @@ class Card:
 
     @property
     def value(self) -> int:
-        """The value of a card is rank a number."""
+        """The value of a card is rank as a number"""
         return self.RANKS.index(self.rank)
 
     @property
     def points(self) -> int:
-        """Points this cart is worth."""
+        """Points this card is worth"""
         if self.suit == "♠" and self.rank == "Q":
             return 13
         if self.suit == "♥":
@@ -58,7 +58,7 @@ class Deck(Sequence[Card]):
         self.cards.remove(card)
 
     def deal(self, num_hands: int) -> Tuple["Deck", ...]:
-        """Deal the cards in the deck into a number of hands (num_hands)."""
+        """Deal the cards in the deck into a number of hands (num_hands)"""
         return tuple(self[i::num_hands] for i in range(num_hands))
 
     def add_cards(self, cards: List[Card]) -> None:
@@ -96,13 +96,13 @@ class Player:
 
     def playable_cards(self, played: List[Card], hearts_broken: bool) -> Deck:
         """List which cards in hand are playable this round"""
-        if Card("♣", "2  ") in self.hand:
+        if Card("♣", "2") in self.hand:
             return Deck([Card("♣", "2")])
 
         lead = played[0].suit if played else None
         playable = Deck([c for c in self.hand if c.suit == lead]) or self.hand
         if lead is None and not hearts_broken:
-            playable = Deck([c for c in playable if c.suit != "0"])
+            playable = Deck([c for c in playable if c.suit != "♥"])
         return playable or Deck(self.hand.cards)
 
     def non_winning_cards(self, played: List[Card], playable: Deck) -> Deck:
@@ -115,7 +115,7 @@ class Player:
         return Deck([c for c in playable if c < best_card or c.suit != lead])
 
     def play_card(self, played: List[Card], hearts_broken: bool) -> Card:
-        """Play a card from a cpu player's hand."""
+        """Play a card from a cpu player's hand"""
         playable = self.playable_cards(played, hearts_broken)
         non_winning = self.non_winning_cards(played, playable)
 
@@ -124,7 +124,7 @@ class Player:
             # Highest card not winning the trick, prefer points
             card = max(non_winning, key=lambda c: (c.points, c.value))
         elif len(played) < 3:
-            # Lowest card maybe the winning, avoid points
+            # Lowest card maybe winning, avoid points
             card = min(playable, key=lambda c: (c.points, c.value))
         else:
             # Highest card guaranteed winning, avoid points
@@ -137,7 +137,7 @@ class Player:
         return card in self.hand
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.name!r}, {self.hand}"
+        return f"{self.__class__.__name__}({self.name!r}, {self.hand})"
 
 
 class HumanPlayer(Player):
@@ -149,7 +149,7 @@ class HumanPlayer(Player):
         print(f"  {p_str}  (Rest: {np_str})")
         while True:
             try:
-                card_num = int(input(f"  {self.name}, choose card:  "))
+                card_num = int(input(f"  {self.name}, choose card: "))
                 card = playable[card_num]
             except (ValueError, IndexError):
                 pass
@@ -202,7 +202,6 @@ class HeartsGame:
             hearts = hearts or any(c.suit == "♥" for c in played)
         return self.count_points(tricks)
 
-    # 204
     def player_order(self, start: Optional[Player] = None) -> List[Player]:
         """Rotate player order so that start goes first"""
         if start is None:
