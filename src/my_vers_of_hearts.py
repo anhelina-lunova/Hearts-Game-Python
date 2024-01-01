@@ -18,6 +18,7 @@ back_color_white = Back.WHITE
 
 class GameOutput:
     def typewriter(self, message, time_, colorama_opt):
+        os.system("clear")
         for char in message:
             sys.stdout.write(
                 colorama_opt + char
@@ -260,8 +261,18 @@ class HeartsGame:
 
 
 if __name__ == "__main__":
-    # Read player names from the command line
-    player_names = sys.argv[1:]
+    # Read player names from user input
+    num_players = 4  # Assuming a fixed number of players for simplicity
+    player_names = []
+    for i in range(num_players):
+        while True:
+            name = input(f"Enter name for Player {i+1}: ")
+            if name.strip():
+                player_names.append(name)
+                break
+            else:
+                print("Please enter a valid name.")
+
     game = HeartsGame(*player_names)
     game_output = GameOutput()
     game_output.print_game_caption()
