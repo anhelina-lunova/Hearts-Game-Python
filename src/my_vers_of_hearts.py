@@ -69,7 +69,13 @@ class Card:
         return self.value < other.value
 
     def __repr__(self) -> str:
-        return f"{self.suit}{self.rank}"
+        suit_color = {
+            "♠": fore_color_black_bright,
+            "♥": fore_color_red_bright,
+            "♦": fore_color_red_bright,
+            "♣": fore_color_black_bright,
+        }
+        return f"{back_color_white}{suit_color[self.suit]}{self.suit}{self.rank}{Style.RESET_ALL}"
 
 
 class Deck(Sequence[Card]):
