@@ -1,12 +1,12 @@
-from collections import Counter
-import random
-import sys
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
-from typing import overload
 import os
+import sys
 import time
+import random
+from typing import overload
+from collections import Counter
 from colorama import Fore, Style, Back  # import for colored output
 from game_description import game_caption, game_desc  # import game descriptions
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 # color definitions
 fore_color_yellow_bright = Fore.YELLOW + Style.BRIGHT
