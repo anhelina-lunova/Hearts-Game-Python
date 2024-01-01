@@ -1,12 +1,12 @@
-from collections import Counter
-import random
-import sys
-from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
-from typing import overload
 import os
+import sys
 import time
+import random
+from typing import overload
+from collections import Counter
 from colorama import Fore, Style, Back  # import for colored output
 from game_description import game_caption, game_desc  # import game descriptions
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 # color definitions
 fore_color_yellow_bright = Fore.YELLOW + Style.BRIGHT
@@ -15,9 +15,32 @@ fore_color_black_bright = Fore.BLACK + Style.BRIGHT
 fore_color_red_bright = Fore.RED + Style.BRIGHT
 back_color_white = Back.WHITE
 
+BOTS = [
+    "🐈 Onion",
+    "🐈 Barbara",
+    "🐈 Busia",
+    "🐈 Pusia",
+    "👩 Romana",
+    "🧑 Oksi",
+    "🧓 Stafania",
+]
+
+
+def randomize_bot_order(wordlist):
+    new_list = []
+    for b in range(len(wordlist)):
+        x = random.choice(wordlist)
+        new_list.append(x)
+        wordlist.remove(x)
+    return new_list
+
+
+available_bots = randomize_bot_order(BOTS)
+
 
 class GameOutput:
     def typewriter(self, message, time_, colorama_opt):
+        os.system("clear")
         for char in message:
             sys.stdout.write(
                 colorama_opt + char
@@ -201,14 +224,14 @@ class HumanPlayer(Player):
 
 class HeartsGame:
     def __init__(self, *names: str) -> None:
-        self.names = (list(names) + "P1 P2 P3 P4".split())[:4]
+        self.names = (list(names) + available_bots)[:4]
         self.players = [Player(n) for n in self.names[1:]]
         self.players.append(HumanPlayer(self.names[0]))
 
     def play(self) -> None:
         """Play a game of Hearts until one player go bust"""
         score = Counter({n: 0 for n in self.names})
-        while all(s < 100 for s in score.values()):
+        while all(s <= 100 for s in score.values()):
             print("\nStarting new round:")
             round_score = self.play_round()
             score.update(Counter(round_score))
@@ -260,8 +283,30 @@ class HeartsGame:
 
 
 if __name__ == "__main__":
-    # Read player names from the command line
-    player_names = sys.argv[1:]
+    # Read player names from user input
+    while True:
+        try:
+            num_players = int(input("Choose number of players (1-6): "))
+            if 1 <= num_players <= 6:
+                break  # Input is valid, exit the loop
+            else:
+                print(
+                    "Invalid number of players. Please enter a number between 1 and 6."
+                )
+        except ValueError:
+            print(
+                "Invalid input. Please enter a valid integer."
+            )  # Assuming a fixed number of players for simplicity
+
+    player_names = []
+    for i in range(num_players):
+        while True:
+            name = input(f"Enter name for Player {i+1}: ")
+            if name.strip():
+                player_names.append("🎮 " + name)
+                break
+            else:
+                print("Please enter a valid name.")
     game = HeartsGame(*player_names)
     game_output = GameOutput()
     game_output.print_game_caption()
