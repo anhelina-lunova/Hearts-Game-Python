@@ -15,6 +15,28 @@ fore_color_black_bright = Fore.BLACK + Style.BRIGHT
 fore_color_red_bright = Fore.RED + Style.BRIGHT
 back_color_white = Back.WHITE
 
+BOTS = [
+    "🐈 Onion",
+    "🐈 Barbara",
+    "🐈 Busia",
+    "🐈 Pusia",
+    "👩🏼 Romana",
+    "🧑🏼 Oksi",
+    "🧓🏼 Stafania",
+]
+
+
+def counterbalance(wordlist):
+    new_list = []
+    for _ in range(len(wordlist)):
+        x = random.choice(wordlist)
+        new_list.append(x)
+        wordlist.remove(x)
+    return new_list
+
+
+random_bots = counterbalance(BOTS)
+
 
 class GameOutput:
     def typewriter(self, message, time_, colorama_opt):
@@ -202,7 +224,7 @@ class HumanPlayer(Player):
 
 class HeartsGame:
     def __init__(self, *names: str) -> None:
-        self.names = (list(names) + "P1 P2 P3 P4".split())[:4]
+        self.names = (list(names) + random_bots)[:4]
         self.players = [Player(n) for n in self.names[1:]]
         self.players.append(HumanPlayer(self.names[0]))
 
@@ -262,13 +284,25 @@ class HeartsGame:
 
 if __name__ == "__main__":
     # Read player names from user input
-    num_players = 4  # Assuming a fixed number of players for simplicity
+    while True:
+        try:
+            num_players = int(input("Choose number of players (1-6): "))
+            if 1 <= num_players <= 6:
+                break  # Input is valid, exit the loop
+            else:
+                print(
+                    "Invalid number of players. Please enter a number between 1 and 6."
+                )
+        except ValueError:
+            print(
+                "Invalid input. Please enter a valid integer."
+            )  # Assuming a fixed number of players for simplicity
     player_names = []
     for i in range(num_players):
         while True:
             name = input(f"Enter name for Player {i+1}: ")
             if name.strip():
-                player_names.append(name)
+                player_names.append("🎮 " + name)
                 break
             else:
                 print("Please enter a valid name.")
