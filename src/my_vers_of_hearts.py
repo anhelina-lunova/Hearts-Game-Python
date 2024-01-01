@@ -20,22 +20,22 @@ BOTS = [
     "🐈 Barbara",
     "🐈 Busia",
     "🐈 Pusia",
-    "👩🏼 Romana",
-    "🧑🏼 Oksi",
-    "🧓🏼 Stafania",
+    "👩 Romana",
+    "🧑 Oksi",
+    "🧓 Stafania",
 ]
 
 
-def counterbalance(wordlist):
+def randomize_bot_order(wordlist):
     new_list = []
-    for _ in range(len(wordlist)):
+    for b in range(len(wordlist)):
         x = random.choice(wordlist)
         new_list.append(x)
         wordlist.remove(x)
     return new_list
 
 
-random_bots = counterbalance(BOTS)
+available_bots = randomize_bot_order(BOTS)
 
 
 class GameOutput:
@@ -224,14 +224,14 @@ class HumanPlayer(Player):
 
 class HeartsGame:
     def __init__(self, *names: str) -> None:
-        self.names = (list(names) + random_bots)[:4]
+        self.names = (list(names) + available_bots)[:4]
         self.players = [Player(n) for n in self.names[1:]]
         self.players.append(HumanPlayer(self.names[0]))
 
     def play(self) -> None:
         """Play a game of Hearts until one player go bust"""
         score = Counter({n: 0 for n in self.names})
-        while all(s < 100 for s in score.values()):
+        while all(s <= 100 for s in score.values()):
             print("\nStarting new round:")
             round_score = self.play_round()
             score.update(Counter(round_score))
@@ -297,6 +297,7 @@ if __name__ == "__main__":
             print(
                 "Invalid input. Please enter a valid integer."
             )  # Assuming a fixed number of players for simplicity
+
     player_names = []
     for i in range(num_players):
         while True:
@@ -306,7 +307,6 @@ if __name__ == "__main__":
                 break
             else:
                 print("Please enter a valid name.")
-
     game = HeartsGame(*player_names)
     game_output = GameOutput()
     game_output.print_game_caption()
