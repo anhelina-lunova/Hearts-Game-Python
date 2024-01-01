@@ -181,12 +181,14 @@ class HumanPlayer(Player):
     def play_card(self, played: List[Card], hearts_broken: bool) -> Card:
         """Play a card from a human player's hand"""
         playable = sorted(self.playable_cards(played, hearts_broken))
-        p_str = "  ".join(f"{n}: {c}" for n, c in enumerate(playable))
+        p_str = "  ".join(f"{n + 1}: {c}" for n, c in enumerate(playable))
         np_str = " ".join(repr(c) for c in self.hand if c not in playable)
         print(f"  {p_str}  (Rest: {np_str})")
         while True:
             try:
-                card_num = int(input(f"  {self.name}, choose card: "))
+                card_num = (
+                    int(input(f"  {self.name}, choose card (1-{len(playable)}): ")) - 1
+                )
                 card = playable[card_num]
             except (ValueError, IndexError):
                 pass
